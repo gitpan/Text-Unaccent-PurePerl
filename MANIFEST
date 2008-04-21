@@ -12,5 +12,4 @@ t/04-unac_string-utf-8.t
 t/05-unac_string-utf-16.t
 t/06-unac_string-with-enc.t
 t/07-unac_string_utf16.t
-Text_Unaccent_PurePerl.ps
 META.yml                                 Module meta-data (added by MakeMaker)

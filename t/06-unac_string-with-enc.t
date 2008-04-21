@@ -1,7 +1,7 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-19 11:20:13 +02:00
+# Time-stamp:  2008-04-21 08:16:49 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -13,8 +13,8 @@ use warnings;           # control optional warnings
 
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
-use Text::Unaccent;
-#use Text::Unaccent::PurePerl;
+#use Text::Unaccent;
+use Text::Unaccent::PurePerl;
 
 #########################
 
