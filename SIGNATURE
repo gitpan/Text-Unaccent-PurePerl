@@ -1,0 +1,39 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.55.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 51b286d260f221f80d79442ea18b321c286aeace .cvsignore
+SHA1 de5c208bdef50e611822037f1150fbc32d703ee6 Changes
+SHA1 6d3b7fdeee5ae62d4131a5b947cec1c6fcceffae MANIFEST
+SHA1 ce35c67cdffb92aea3f350f0ca6c8adbf812d93b META.yml
+SHA1 4de82e916818ae869957b47fd818a6fdbc1f27d5 Makefile.PL
+SHA1 5e4be9228a6207fa6966b6491b65c34711fe2dcd README
+SHA1 79ff5eea5a9a397d844f788726594cdcc9cc24a1 lib/Text/Unaccent/PurePerl.pm
+SHA1 1cbfb3335ed51dc5d96e95505dd7e8bedad400be t/00-signature.t
+SHA1 7ee8d553cbd6385619434cdfdf02de9b95f5d1c4 t/01-load.t
+SHA1 bb1e4bc565ec9401ecb3b32e318a681401cefa08 t/02-pod.t
+SHA1 f761b8ea6c782e97487c2b72e2d3befa016144ce t/03-pod-coverage.t
+SHA1 4023c7df1313a3b641574a0fcea0e41f996a28ab t/04-unac_string-iso-8859-1.t
+SHA1 0ec1c574d4410acc0b74dc15aa4050c3c0249401 t/05-unac_string-utf-8.t
+SHA1 4b11043020474f0d98b4c604b7aa9740964f393e t/06-unac_string-utf-16.t
+SHA1 4377e95fd2d652b5db4496fad5945dff86f75606 t/07-unac_string-with-enc.t
+SHA1 51ba7559066907561d8330ee9a850170258f9374 t/08-unac_string_utf16.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (Cygwin)
+
+iEYEARECAAYFAkgPTf4ACgkQVQvyyU1bchoKYACgmhSKeHVmIbxR7e0ATiwFFtUe
+SBAAoNb5YAlShiyA4tphls4SSclSQJ6S
+=/Wbv
+-----END PGP SIGNATURE-----

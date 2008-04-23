@@ -3,13 +3,15 @@ Changes
 lib/Text/Unaccent/PurePerl.pm
 Makefile.PL
 MANIFEST			This list of files
+META.yml
 README
-t/00-load.t
-t/01-pod.t
-t/02-pod-coverage.t
-t/03-unac_string-iso-8859-1.t
-t/04-unac_string-utf-8.t
-t/05-unac_string-utf-16.t
-t/06-unac_string-with-enc.t
-t/07-unac_string_utf16.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/00-signature.t
+t/01-load.t
+t/02-pod.t
+t/03-pod-coverage.t
+t/04-unac_string-iso-8859-1.t
+t/05-unac_string-utf-8.t
+t/06-unac_string-utf-16.t
+t/07-unac_string-with-enc.t
+t/08-unac_string_utf16.t
+SIGNATURE                                Public-key signature (added by MakeMaker)

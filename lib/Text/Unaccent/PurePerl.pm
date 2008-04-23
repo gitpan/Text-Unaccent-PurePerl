@@ -1,7 +1,7 @@
 # -*- mode: perl; coding: iso-8859-1-unix; -*-
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-21 08:27:13 +02:00
+# Time-stamp:  2008-04-23 16:55:40 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -65,7 +65,7 @@ our @EXPORT = qw(
                );
 our @EXPORT_OK = qw();
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # These three are only included for compatibility with Text::Unaccent. They
 # have no effect on the behaviour of this module.

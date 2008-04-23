@@ -1,7 +1,7 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-21 08:16:49 +02:00
+# Time-stamp:  2008-04-23 16:17:22 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -29,14 +29,21 @@ if ($@) {
 #########################
 
 sub nice_string {
-    join "",
-      map { $_ > 255 ?                  # if wide character...
-            sprintf("\\x{%04X}", $_) :  # \x{...}
-            chr($_) =~ /[^[:print:]]/ ? # else if non-printable ...
-            sprintf("\\x%02X", $_) :    # \x..
-            chr($_)                     # else as is
-          }
-        unpack 'U*', $_[0];             # unpack Unicode characters
+    my $str_in  = $_[0];
+    my $length  = length($str_in);
+    my $str_out = '';
+
+    for (my $offset = 0 ; $offset < $length ; ++ $offset) {
+        my $chr = substr($str_in, $offset, 1);
+        my $ord = ord($chr);
+        $str_out .= $ord > 255 ?                  # if wide character...
+                    sprintf("\\x{%04X}", $ord) :  # \x{...}
+                    $chr =~ /[^[:print:]]/ ?      # else if non-printable ...
+                    sprintf("\\x%02X", $ord) :    # \x..
+                    $chr                          # else as is
+    }
+
+    return $str_out;
 }
 
 #########################
