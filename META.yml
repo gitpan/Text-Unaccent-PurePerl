@@ -1,10 +1,10 @@
 --- #YAML:1.0
 name:                Text-Unaccent-PurePerl
-version:             0.03
+version:             0.04
 abstract:            remove accents from characters
 license:             ~
 author:              
-    - Peter J. Acklam <pjacklam@cpan.org>
+    - Peter John Acklam <pjacklam@cpan.org>
 generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     

@@ -1,7 +1,7 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-19 11:31:37 +02:00
+# Time-stamp:  2008-04-29 17:28:25 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -12,6 +12,8 @@ use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
 
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
+
+use lib 't';
 
 #########################
 
@@ -51,18 +53,18 @@ for (my $i = 0 ; $i <= $#$data ; ++ $i) {
 
     unless (defined $out_actual) {
         print "not ok ", $testno, "\n";
-        print "  input ......: ", nice_string($in), "\n";
+        print "  input ......: ", TestUtil::nice_string($in), "\n";
         print "  got ........: <UNDEF>\n";
-        print "  expected ...: ", nice_string($out_expected), "\n";
+        print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
         print "  error ......: the output is undefined\n";
         next;
     }
 
     unless ($out_actual eq $out_expected) {
         print "not ok ", $testno, "\n";
-        print "  input ......: ", nice_string($in), "\n";
-        print "  got ........: ", nice_string($out_actual), "\n";
-        print "  expected ...: ", nice_string($out_expected), "\n";
+        print "  input ......: ", TestUtil::nice_string($in), "\n";
+        print "  got ........: ", TestUtil::nice_string($out_actual), "\n";
+        print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
         print "  error ......: the actual output is not identical to",
           " the expected output\n";
         next;

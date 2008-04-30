@@ -1,7 +1,7 @@
-# -*- mode: perl; coding: iso-8859-1-unix; -*-
+# -*- mode: perl; coding: utf-8-unix; -*-
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-23 16:55:40 +02:00
+# Time-stamp:  2008-04-29 08:35:18 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -47,11 +47,15 @@ C<unac_version>, and C<unac_debug>.
 
 package Text::Unaccent::PurePerl;
 
-use 5.006;              # for the 'utf8' and 'warnings' pragmas
+# The 'utf8' and 'warnings' pragmas only require Perl 5.006, but the support
+# for UTF-8 is rotten in Perl < 5.008, so require 5.008.
+
+use 5.008;
+
 use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
 
-#use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
+use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
 use Carp;
 use Exporter;
@@ -65,7 +69,7 @@ our @EXPORT = qw(
                );
 our @EXPORT_OK = qw();
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # These three are only included for compatibility with Text::Unaccent. They
 # have no effect on the behaviour of this module.
@@ -17819,14 +17823,14 @@ sub unac_string ($;$) {
           unless defined $str_in;
     }
 
-    my $length = length($str_in);
-    my $str_out = '';
-
     # Iterate over each character in the input string. If the character exists
     # in the map, replace the current character according to the map, otherwise
     # keep the character as it is.
 
-    for (my $offset = 0 ; $offset < $length ; ++ $offset) {
+    my $str_out = '';
+    my $offset_max = length($str_in) - 1;
+
+    for my $offset (0 .. $offset_max) {
         my $chr = substr($str_in, $offset, 1);
         $str_out .= exists $map->{$chr} ? $map->{$chr} : $chr;
         #print "# <$chr> -> <$map->{$chr}>\n" if exists $map->{$chr};
@@ -17909,19 +17913,17 @@ sub unac_debug ($) {
 
 =head2 French
 
-  $str1 = "d�j� vu";
+  $str1 = "déjà vu";
   $str2 = unac_string($str1);
   #     = "deja vu";
 
 =head2 Greek
 
-The following example uses one of the Greek words for the English indefinite
-article I<a>, as in I<a house>. (Greek has genders, so there are three words
-for the English I<a>.)  It is a three-letter word made up by epsilon with
-tonos, nu, and alpha.
+  $str1 = "νέα";
+        = "\x{03AD}\x{03BD}\x{03B1}";
 
-  $str1 = "\x{03AD}\x{03BD}\x{03B1}";
   $str2 = unac_string($str1);
+  #     = "νεα";
   #     = "\x{03B5}\x{03BD}\x{03B1}"
 
 The unaccented string $str2 is made up by the three letters epsilon (without

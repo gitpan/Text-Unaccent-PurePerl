@@ -14,26 +14,27 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 51b286d260f221f80d79442ea18b321c286aeace .cvsignore
-SHA1 de5c208bdef50e611822037f1150fbc32d703ee6 Changes
-SHA1 6d3b7fdeee5ae62d4131a5b947cec1c6fcceffae MANIFEST
-SHA1 ce35c67cdffb92aea3f350f0ca6c8adbf812d93b META.yml
-SHA1 4de82e916818ae869957b47fd818a6fdbc1f27d5 Makefile.PL
-SHA1 5e4be9228a6207fa6966b6491b65c34711fe2dcd README
-SHA1 79ff5eea5a9a397d844f788726594cdcc9cc24a1 lib/Text/Unaccent/PurePerl.pm
-SHA1 1cbfb3335ed51dc5d96e95505dd7e8bedad400be t/00-signature.t
+SHA1 e996b8eb326e3fd810d7dff57691442832560e0a Changes
+SHA1 afb6ff40c1ea0c34e08d5dc9aced50c89a3a41be MANIFEST
+SHA1 047af01cc83dfd632b2cd52ba4254d99ecf96829 MANIFEST.SKIP
+SHA1 21791730e6c4ad2861b9619d16457b3804342bd2 META.yml
+SHA1 9d34047bffd24d7c0a3a5b788e6badb24036b896 Makefile.PL
+SHA1 8e18d649c5e0ce7378b5aa52273fb57fe7d9d293 README
+SHA1 1a2c5b5b6c77cdf4d4b7c06a859843f2024d9ae7 lib/Text/Unaccent/PurePerl.pm
+SHA1 543d5da8b5d3688458aeb51a3f70a2d4d91dcb0a t/00-signature.t
 SHA1 7ee8d553cbd6385619434cdfdf02de9b95f5d1c4 t/01-load.t
-SHA1 bb1e4bc565ec9401ecb3b32e318a681401cefa08 t/02-pod.t
-SHA1 f761b8ea6c782e97487c2b72e2d3befa016144ce t/03-pod-coverage.t
-SHA1 4023c7df1313a3b641574a0fcea0e41f996a28ab t/04-unac_string-iso-8859-1.t
-SHA1 0ec1c574d4410acc0b74dc15aa4050c3c0249401 t/05-unac_string-utf-8.t
-SHA1 4b11043020474f0d98b4c604b7aa9740964f393e t/06-unac_string-utf-16.t
-SHA1 4377e95fd2d652b5db4496fad5945dff86f75606 t/07-unac_string-with-enc.t
-SHA1 51ba7559066907561d8330ee9a850170258f9374 t/08-unac_string_utf16.t
+SHA1 a62bbead66a5eb2c690d7f77fc5de3dff008cd81 t/02-pod.t
+SHA1 0b82a05506ff0553a7ca1ae9f42686d254319c35 t/03-pod-coverage.t
+SHA1 232c4d3a4e83b5014c78e0f3fc72d445acf1e09c t/04-unac_string-iso-8859-1.t
+SHA1 bd1786a2259432fae6ffd580b401fe4cd695741f t/05-unac_string-utf-8.t
+SHA1 9d10cbd5d4a06480fde9bbe301481f11efac339d t/06-unac_string-utf-16.t
+SHA1 db6d10635029f5f3a187327f0f29f053cf666849 t/07-unac_string-with-enc.t
+SHA1 ef68a5fcbe0537a50602e36291f92d789d3f24a0 t/08-unac_string_utf16.t
+SHA1 6bca6130cb80f20c1829026d83132a2a446560c0 t/TestUtil.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.9 (Cygwin)
 
-iEYEARECAAYFAkgPTf4ACgkQVQvyyU1bchoKYACgmhSKeHVmIbxR7e0ATiwFFtUe
-SBAAoNb5YAlShiyA4tphls4SSclSQJ6S
-=/Wbv
+iEYEARECAAYFAkgYEfIACgkQVQvyyU1bchpIXwCffYa1OEonyVcGt4xX/n8dGCTH
+eeQAoIlpJfy1BL4Zr51zZGu/druLkx8z
+=Ve7R
 -----END PGP SIGNATURE-----

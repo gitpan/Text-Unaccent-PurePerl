@@ -1,7 +1,7 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-23 16:17:22 +02:00
+# Time-stamp:  2008-04-29 17:29:17 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -13,6 +13,10 @@ use warnings;           # control optional warnings
 
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
+use lib 't';
+
+#########################
+
 #use Text::Unaccent;
 use Text::Unaccent::PurePerl;
 
@@ -21,29 +25,8 @@ use Text::Unaccent::PurePerl;
 eval { require Encode; };
 
 if ($@) {
-    print "1..1\n";
-    print "ok  # skipping because the 'Encode' module is not installed.\n";
+    print "1..0 # skipped because the 'Encode' module is not installed.\n";
     exit;
-}
-
-#########################
-
-sub nice_string {
-    my $str_in  = $_[0];
-    my $length  = length($str_in);
-    my $str_out = '';
-
-    for (my $offset = 0 ; $offset < $length ; ++ $offset) {
-        my $chr = substr($str_in, $offset, 1);
-        my $ord = ord($chr);
-        $str_out .= $ord > 255 ?                  # if wide character...
-                    sprintf("\\x{%04X}", $ord) :  # \x{...}
-                    $chr =~ /[^[:print:]]/ ?      # else if non-printable ...
-                    sprintf("\\x%02X", $ord) :    # \x..
-                    $chr                          # else as is
-    }
-
-    return $str_out;
 }
 
 #########################
@@ -181,9 +164,9 @@ for (my $i = 0 ; $i <= $#$data ; ++ $i) {
 
         unless (defined $out_actual) {
             print "not ok ", $testno, "\n";
-            print "  input ......: ", nice_string($in), "\n";
+            print "  input ......: ", TestUtil::nice_string($in), "\n";
             print "  got ........: <UNDEF>\n";
-            print "  expected ...: ", nice_string($out_expected), "\n";
+            print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
             print "  encoding ...: $encoding_name\n";
             print "  error ......: the output is undefined\n";
             next;
@@ -191,9 +174,9 @@ for (my $i = 0 ; $i <= $#$data ; ++ $i) {
 
         unless ($out_actual eq $out_expected) {
             print "not ok ", $testno, "\n";
-            print "  input ......: ", nice_string($in), "\n";
-            print "  got ........: ", nice_string($out_actual), "\n";
-            print "  expected ...: ", nice_string($out_expected), "\n";
+            print "  input ......: ", TestUtil::nice_string($in), "\n";
+            print "  got ........: ", TestUtil::nice_string($out_actual), "\n";
+            print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
             print "  encoding ...: $encoding_name\n";
             print "  error ......: the actual output is not identical to",
               " the expected output\n";

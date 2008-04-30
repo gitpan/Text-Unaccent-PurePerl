@@ -1,7 +1,7 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-23 14:38:30 +02:00
+# Time-stamp:  2008-04-29 17:26:41 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
 
@@ -13,45 +13,11 @@ use warnings;           # control optional warnings
 
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
+use lib 't';
+
 #########################
 
 use Text::Unaccent::PurePerl;
-
-#########################
-
-# The following function only seems to work with Perl >= 5.8. Neither
-# "unpack 'U*', $x" nor "split //, $x" can be used to split a string into
-# characters with Perl 5.6. However, "substr($offset, 1, $x)" seems to work
-# fine also with Perl 5.6.
-#
-#sub nice_string {
-#    join "",
-#      map { $_ > 255 ?                  # if wide character...
-#            sprintf("\\x{%04X}", $_) :  # \x{...}
-#            chr($_) =~ /[^[:print:]]/ ? # else if non-printable ...
-#            sprintf("\\x%02X", $_) :    # \x..
-#            chr($_)                     # else as is
-#          }
-#        unpack 'U*', $_[0];             # unpack Unicode characters
-#}
-
-sub nice_string {
-    my $str_in  = $_[0];
-    my $length  = length($str_in);
-    my $str_out = '';
-
-    for (my $offset = 0 ; $offset < $length ; ++ $offset) {
-        my $chr = substr($str_in, $offset, 1);
-        my $ord = ord($chr);
-        $str_out .= $ord > 255 ?                  # if wide character...
-                    sprintf("\\x{%04X}", $ord) :  # \x{...}
-                    $chr =~ /[^[:print:]]/ ?      # else if non-printable ...
-                    sprintf("\\x%02X", $ord) :    # \x..
-                    $chr                          # else as is
-    }
-
-    return $str_out;
-}
 
 #########################
 
@@ -102,18 +68,18 @@ for (my $i = 0 ; $i <= $#$data ; ++ $i) {
 
         unless (defined $out_actual) {
             print "not ok ", $testno, "\n";
-            print "  input ......: ", nice_string($in), "\n";
+            print "  input ......: ", TestUtil::nice_string($in), "\n";
             print "  got ........: <UNDEF>\n";
-            print "  expected ...: ", nice_string($out_expected), "\n";
+            print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
             print "  error ......: the output is undefined\n";
             next;
         }
 
         unless ($out_actual eq $out_expected) {
             print "not ok ", $testno, "\n";
-            print "  input ......: ", nice_string($in), "\n";
-            print "  got ........: ", nice_string($out_actual), "\n";
-            print "  expected ...: ", nice_string($out_expected), "\n";
+            print "  input ......: ", TestUtil::nice_string($in), "\n";
+            print "  got ........: ", TestUtil::nice_string($out_actual), "\n";
+            print "  expected ...: ", TestUtil::nice_string($out_expected), "\n";
             print "  error ......: the actual output is not identical to",
               " the expected output\n";
             next;

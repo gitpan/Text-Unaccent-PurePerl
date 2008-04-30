@@ -1,0 +1,35 @@
+# -*- coding: us-ascii-unix -*-
+#
+# Author:      Peter J. Acklam
+# Time-stamp:  2008-04-24 14:33:27 +02:00
+# E-mail:      pjacklam@cpan.org
+# URL:         http://home.online.no/~pjacklam
+
+# Version control files and dirs.
+
+\bRCS\b
+\bCVS\b
+,v$
+\B\.svn\b
+^\.cvsignore
+
+# Makemaker generated files and dirs.
+
+^MANIFEST\.bak
+^Makefile$
+^blib/
+^blibdirs
+^pm_to_blib
+^MakeMaker-\d
+
+# Module::Build generated files and dirs.
+
+^Build$
+^_build/
+
+# Temp, old and emacs backup files.
+
+~$
+\.old$
+^#.*#$
+^\.#

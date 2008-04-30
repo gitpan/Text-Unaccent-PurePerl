@@ -1,9 +1,11 @@
 #!perl
 #
 # Author:      Peter J. Acklam
-# Time-stamp:  2008-04-06 14:59:44 +02:00
+# Time-stamp:  2008-04-30 08:19:33 +02:00
 # E-mail:      pjacklam@cpan.org
 # URL:         http://home.online.no/~pjacklam
+
+#########################
 
 use 5.006;              # for the 'utf8' and 'warnings' pragmas
 use strict;             # restrict unsafe constructs
