@@ -1,7 +1,8 @@
 Text-Unaccent-PurePerl
 
 Text::Unaccent::PurePerl is a module that remove accents from a string.
-It is essentially a pure Perl equivalent to the Text::Unaccent module.
+It is essentially a pure Perl equivalent to the Text::Unaccent module,
+but it handles Perl Unicode strings and characters properly.
 
 INSTALLATION
 
@@ -22,7 +23,7 @@ perldoc command.
 You can also look for information at:
 
     RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Text-Unaccent-PurePerl
+        https://rt.cpan.org/Public/Dist/Display.html?Name=Text-Unaccent-PurePerl
 
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/Text-Unaccent-PurePerl
@@ -35,7 +36,7 @@ You can also look for information at:
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2008 Peter John Acklam <pjacklam@cpan.org>
+Copyright 2008,2013 Peter John Acklam <pjacklam@online.no>
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

@@ -1,16 +1,15 @@
-#!perl
+# -*- mode: perl; coding: us-ascii-unix -*-
 #
-# Author:      Peter J. Acklam
-# Time-stamp:  2008-04-30 08:18:27 +02:00
-# E-mail:      pjacklam@cpan.org
+# Author:      Peter John Acklam
+# Time-stamp:  2013-03-02 12:40:03 +00:00
+# E-mail:      pjacklam@online.no
 # URL:         http://home.online.no/~pjacklam
 
 #########################
 
-use 5.006;              # for the 'utf8' and 'warnings' pragmas
+#use 5.008;              # for UTF-8 support
 use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
-
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
 # The following is a modified version of the original code (see below) from the
@@ -30,7 +29,7 @@ elsif (! eval { require Module::Signature; 1 }) {
 }
 elsif (! eval { require Socket; Socket::inet_aton('pgp.mit.edu') }) {
     print "1..0 # skipped. ",
-      "Cannot connect to the keyserver\n";
+      "Cannot connect to the keyserver to check module signature\n";
 }
 else {
     print "1..1\n";
@@ -64,8 +63,3 @@ else {
       or print "not ";
     print "ok 1 # Valid signature\n";
 }
-
-# Emacs Local Variables:
-# Emacs coding: us-ascii-unix
-# Emacs mode: perl
-# Emacs End:

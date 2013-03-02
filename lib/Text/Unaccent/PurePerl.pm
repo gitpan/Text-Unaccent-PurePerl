@@ -1,11 +1,13 @@
 # -*- mode: perl; coding: utf-8-unix; -*-
 #
-# Author:      Peter J. Acklam
-# Time-stamp:  2008-04-29 08:35:18 +02:00
-# E-mail:      pjacklam@cpan.org
+# Author:      Peter John Acklam
+# Time-stamp:  2013-03-02 12:38:55 +00:00
+# E-mail:      pjacklam@online.no
 # URL:         http://home.online.no/~pjacklam
 
 =pod
+
+=encoding utf8
 
 =head1 NAME
 
@@ -30,13 +32,62 @@ Text::Unaccent::PurePerl - remove accents from characters
 
 =head1 DESCRIPTION
 
-Text::Unaccent::PurePerl is a module for removing accents from a string.  It is
-essentially a pure Perl equivalent to the Text::Unaccent module, but this one
-also properly handles character strings, whereas Text::Unaccent only deals with
-raw octet strings with an associated character coding. In addition, this
-module, as the name suggests, does not require a C compiler to build. The
-disadvantage is that this module is much slower than the compiled
-Text::Unaccent.
+=head2 Conversions
+
+Text::Unaccent::PurePerl is a module for “unaccenting” characters, i.e.,
+removing accents and other diacritic marks from characters. Here, the term
+I<unaccenting> has a rather loose meaning, since this module does a lot more
+than just removing accents. Here are some examples:
+
+  Á → A    latin letter
+  Æ → AE   single letter split in two
+  ƒ → f    simpler variant of same letter
+  Ĳ → IJ   ligature split in two
+  ¹ → 1    superscript
+  ½ → 1⁄2  fraction
+  ώ → ω    Greek letter
+  Й → И    Cyrillic letter
+  ™ → TM   various symbols
+
+=head2 Comparison to Text::Unaccent
+
+Text::Unaccent::PurePerl is a pure Perl equivalent to the Text::Unaccent
+module, but with the additional feature of handling modern Perl character
+strings. Text::Unaccent only deals with raw octet strings with an associated
+character coding. In addition, this module, as the name suggests, does not
+require a C compiler to build. The disadvantage is that this module is slower
+than Text::Unaccent.
+
+=head2 Other conversions
+
+The conversions done by Text::Unaccent seem inconsistent. For instance,
+
+  Æ → AE   Text::Unaccent will convert this ...
+  Œ → OE   ... but not this
+
+One might expect the following conversions
+
+  … → ...  U+2026 HORIZONTAL ELLIPSIS
+  Œ → OE   U+0152 LATIN CAPITAL LIGATURE OE
+  œ → oe   U+0153 LATIN SMALL LIGATURE OE
+  ′ → '    U+2032 PRIME
+  ″ → "    U+2033 DOUBLE PRIME
+
+and more, but these aren't implemented in Text::Unaccent, so they aren't
+implemented in Text::Unaccent::PurePerl either. This might change in the
+future.
+
+=head2 Comparison to Text::Unidecode
+
+If you want a full transliteration to ASCII, use the Text::Unidecode module.
+
+  "Русский" (input)
+  "Русскии" (output from Text::Unaccent::PurePerl::unac_string)
+  "Russkii" (output from Text::Unidecode::unidecode)
+
+  "Ελληνικά" (input)
+  "Ελληνικα" (output from Text::Unaccent::PurePerl::unac_string)
+  "Ellinika" (output from Text::Unidecode::unidecode)
 
 =head1 EXPORT
 
@@ -50,15 +101,14 @@ package Text::Unaccent::PurePerl;
 # The 'utf8' and 'warnings' pragmas only require Perl 5.006, but the support
 # for UTF-8 is rotten in Perl < 5.008, so require 5.008.
 
-use 5.008;
+use 5.008;              # required version of Perl
 
 use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
-
 use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
-use Carp;
-use Exporter;
+use Carp;               # routines like die() and warn() useful for modules
+use Exporter;           # implements default import method for modules
 
 our @ISA = qw(Exporter);
 our @EXPORT = qw(
@@ -69,7 +119,7 @@ our @EXPORT = qw(
                );
 our @EXPORT_OK = qw();
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 # These three are only included for compatibility with Text::Unaccent. They
 # have no effect on the behaviour of this module.
@@ -4423,11 +4473,13 @@ my $map =
  # ->   0391 GREEK CAPITAL LETTER ALPHA
  "\x{1F8D}" => "\x{0391}",
 
- # 1F8E GREEK CAPITAL LETTER ALPHA WITH PSILI AND PERISPOMENI AND PROSGEGRAMMENI
+ # 1F8E GREEK CAPITAL LETTER ALPHA WITH PSILI AND PERISPOMENI AND
+ #      PROSGEGRAMMENI
  # ->   0391 GREEK CAPITAL LETTER ALPHA
  "\x{1F8E}" => "\x{0391}",
 
- # 1F8F GREEK CAPITAL LETTER ALPHA WITH DASIA AND PERISPOMENI AND PROSGEGRAMMENI
+ # 1F8F GREEK CAPITAL LETTER ALPHA WITH DASIA AND PERISPOMENI AND
+ #      PROSGEGRAMMENI
  # ->   0391 GREEK CAPITAL LETTER ALPHA
  "\x{1F8F}" => "\x{0391}",
 
@@ -4551,11 +4603,13 @@ my $map =
  # ->   03A9 GREEK CAPITAL LETTER OMEGA
  "\x{1FAD}" => "\x{03A9}",
 
- # 1FAE GREEK CAPITAL LETTER OMEGA WITH PSILI AND PERISPOMENI AND PROSGEGRAMMENI
+ # 1FAE GREEK CAPITAL LETTER OMEGA WITH PSILI AND PERISPOMENI AND
+ #      PROSGEGRAMMENI
  # ->   03A9 GREEK CAPITAL LETTER OMEGA
  "\x{1FAE}" => "\x{03A9}",
 
- # 1FAF GREEK CAPITAL LETTER OMEGA WITH DASIA AND PERISPOMENI AND PROSGEGRAMMENI
+ # 1FAF GREEK CAPITAL LETTER OMEGA WITH DASIA AND PERISPOMENI AND
+ #      PROSGEGRAMMENI
  # ->   03A9 GREEK CAPITAL LETTER OMEGA
  "\x{1FAF}" => "\x{03A9}",
 
@@ -13646,17 +13700,20 @@ my $map =
  #    + 064A ARABIC LETTER YEH
  "\x{FBF8}" => "\x{06D0}\x{064A}",
 
- # FBF9 ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA ISOLATED FORM
+ # FBF9 ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA
+ #      ISOLATED FORM
  # ->   0649 ARABIC LETTER ALEF MAKSURA
  #    + 064A ARABIC LETTER YEH
  "\x{FBF9}" => "\x{0649}\x{064A}",
 
- # FBFA ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA FINAL FORM
+ # FBFA ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA
+ #      FINAL FORM
  # ->   0649 ARABIC LETTER ALEF MAKSURA
  #    + 064A ARABIC LETTER YEH
  "\x{FBFA}" => "\x{0649}\x{064A}",
 
- # FBFB ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA INITIAL FORM
+ # FBFB ARABIC LIGATURE UIGHUR KIRGHIZ YEH WITH HAMZA ABOVE WITH ALEF MAKSURA
+ #      INITIAL FORM
  # ->   0649 ARABIC LETTER ALEF MAKSURA
  #    + 064A ARABIC LETTER YEH
  "\x{FBFB}" => "\x{0649}\x{064A}",
@@ -16045,7 +16102,8 @@ my $map =
  #    + 0633 ARABIC LETTER SEEN
  #    + 0644 ARABIC LETTER LAM
  #    + 0645 ARABIC LETTER MEEM
- "\x{FDFA}" => "\x{0635}\x{0644}\x{0649} \x{0627}\x{0644}\x{0644}\x{0647} \x{0639}\x{0644}\x{064A}\x{0647} \x{0648}\x{0633}\x{0644}\x{0645}",
+ "\x{FDFA}" => "\x{0635}\x{0644}\x{0649} \x{0627}\x{0644}\x{0644}\x{0647}"
+     . " \x{0639}\x{0644}\x{064A}\x{0647} \x{0648}\x{0633}\x{0644}\x{0645}",
 
  # FDFB ARABIC LIGATURE JALLAJALALOUHOU
  # ->   062C ARABIC LETTER JEEM
@@ -17781,9 +17839,6 @@ encoded data. (An octet is eight bits of data with ordinal value in the range
       encode($enc, unac_string(decode($enc, $oct)));
   }
 
-except that this module's unac_string() doesn't require the Encode module nor
-the C compiler required to compile Text::Unaccent.
-
 =cut
 
 sub unac_string ($;$) {
@@ -17920,11 +17975,11 @@ sub unac_debug ($) {
 =head2 Greek
 
   $str1 = "νέα";
-        = "\x{03AD}\x{03BD}\x{03B1}";
+        = "\x{03BD}\x{03AD}\x{03B1}";
 
   $str2 = unac_string($str1);
   #     = "νεα";
-  #     = "\x{03B5}\x{03BD}\x{03B1}"
+  #     = "\x{03BD}\x{03B5}\x{03B1}";
 
 The unaccented string $str2 is made up by the three letters epsilon (without
 the tonos), nu, and alpha.
@@ -17932,9 +17987,9 @@ the tonos), nu, and alpha.
 In contrast, the version of unac_string() in the Text::Unaccent module gives
 
   $oct2 = unac_string("UTF-8", $str1);
-  #     = "\xCE\xB5\xCE\xBD\xCE\xB1"
+  #     = "\xCE\xBD\xCE\xB5\xCE\xB1";
 
-These octets are the UTF-8 encoded equivalent of C<"\x{03B5}\x{03BD}\x{03B1}">.
+These octets are the UTF-8 encoded equivalent of C<"\x{03BD}\x{03B5}\x{03B1}">.
 
 =head1 BUGS
 
@@ -17970,7 +18025,11 @@ L<http://cpanratings.perl.org/d/Text-Unaccent-PurePerl>
 
 =item * Search CPAN
 
-L<http://search.cpan.org/dist/Text-Unaccent-PurePerl>
+L<http://search.cpan.org/dist/Text-Unaccent-PurePerl/>
+
+=item * CPAN PASS Matrix
+
+L<http://www.cpantesters.org/stats/dist/Text-Unaccent-PurePerl.html>
 
 =back
 
@@ -17980,11 +18039,11 @@ Text::Unaccent(3).
 
 =head1 AUTHOR
 
-Peter J. Acklam, E<lt>pjacklam@cpan.orgE<gt>
+Peter John Acklam, E<lt>pjacklam@online.noE<gt>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2008 Peter J. Acklam, all rights reserved.
+Copyright 2008,2013 Peter John Acklam.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

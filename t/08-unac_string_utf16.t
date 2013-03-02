@@ -1,19 +1,18 @@
-#!perl
+# -*- mode: perl; coding: iso-8859-1 -*-
 #
-# Author:      Peter J. Acklam
-# Time-stamp:  2008-04-29 17:28:25 +02:00
-# E-mail:      pjacklam@cpan.org
+# Author:      Peter John Acklam
+# Time-stamp:  2013-03-02 12:41:12 +00:00
+# E-mail:      pjacklam@online.no
 # URL:         http://home.online.no/~pjacklam
 
 #########################
 
-use 5.006;              # for the 'utf8' and 'warnings' pragmas
+#use 5.008;              # for UTF-8 support
 use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
-
 #use utf8;               # enable/disable UTF-8 (or UTF-EBCDIC) in source code
 
-use lib 't';
+use lib 't';            # manipulate @INC at compile time
 
 #########################
 
@@ -22,9 +21,7 @@ use Text::Unaccent::PurePerl;
 
 #########################
 
-eval { require Encode; };
-
-if ($@) {
+unless (eval { require Encode; 1 }) {
     print "1..0 # skipped because the 'Encode' module is not installed.\n";
     exit;
 }
@@ -73,8 +70,3 @@ for (my $i = 0 ; $i <= $#$data ; ++ $i) {
     print "ok ", $testno, "\n";
 
 }
-
-# Emacs Local Variables:
-# Emacs coding: iso-8859-1
-# Emacs mode: perl
-# Emacs End:

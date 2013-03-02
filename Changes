@@ -1,5 +1,15 @@
 Revision history for Perl extension Text::Unaccent::PurePerl.
 
+0.05
+
+    * Added "=encoding utf8" to the POD.
+
+    * Fixed an error in the documentation.
+
+    * Added more documentation.
+
+    * Added more comments in the code.
+
 0.04  Thu Apr 24 14:50:33     2008
 
     * Changed syntax for faster loop.
@@ -9,7 +19,7 @@ Revision history for Perl extension Text::Unaccent::PurePerl.
 
     * Giving up support for Perl < 5.8, since UTF-8 support is rotten.
 
-    * Better use feedback during signature testing.
+    * Better user feedback during signature testing.
 
 0.03  Wed Apr 23 16:01:27     2008
 

@@ -1,8 +1,8 @@
-# -*- mode: perl; coding: us-ascii-unix; -*-
+# -*- mode: perl; coding: utf-8-unix; -*-
 #
-# Author:      Peter J. Acklam
-# Time-stamp:  2008-04-29 17:25:32 +02:00
-# E-mail:      pjacklam@cpan.org
+# Author:      Peter John Acklam
+# Time-stamp:  2013-03-01 13:37:53 +00:00
+# E-mail:      pjacklam@online.no
 # URL:         http://home.online.no/~pjacklam
 
 package TestUtil;
@@ -10,8 +10,7 @@ package TestUtil;
 # The 'utf8' and 'warnings' pragmas only require Perl 5.006, but the support
 # for UTF-8 is rotten in Perl < 5.008, so require 5.008.
 
-use 5.008;
-
+use 5.008;              # for UTF-8 support
 use strict;             # restrict unsafe constructs
 use warnings;           # control optional warnings
 
